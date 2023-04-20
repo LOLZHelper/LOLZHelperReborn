@@ -35,16 +35,6 @@ export default async function () {
 
             document.getElementsByClassName("pairsJustified")[0].append(profile_info_row);
         });
-        waitForElm(".contestThreadBlock").then(async function () {
-            const marginBlock = Array.from(document.querySelectorAll('.marginBlock'));
-            const participants = marginBlock.filter(e => {
-                return e.innerText.startsWith('Приняли участие:') || e.innerText.startsWith('Took part:');
-            });
-            const prizes = marginBlock.filter(e => {
-                return e.innerText.startsWith('Количество призов:') || e.innerText.startsWith('Number of prizes:');
-            });
-            participants[0].innerHTML += ` (Шанс: ${(100 / (+participants[0].innerText?.match(/\d+/) / (+prizes[0]?.innerText?.match(/\d+/) || 1))).toFixed(2)}%)`;
-        });
     }, true);
     await CATEGORIES.common.defineOption("contestUpper", "Блок розыгрыша над сообщением", async function () {
         waitForElm(".contestThreadBlock").then(() => {
