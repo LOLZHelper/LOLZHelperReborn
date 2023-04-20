@@ -94,6 +94,7 @@ function buildType(type, id, info, value) {
             const select = document.createElement("select");
             select.classList.add("ctrlOrder", "textCtrl", "extraLarge");
             select.id = id;
+            select.style.marginTop = "5px";
 
             for (const [name, rule] of Object.entries(info)) {
                 const option = document.createElement("option");
