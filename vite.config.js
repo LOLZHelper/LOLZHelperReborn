@@ -15,7 +15,8 @@ export default defineConfig({
         match: ['https://lolz.guru/*', 'https://zelenka.guru/*', 'https://lzt.market/*'],
         author: 'insecure_',
         "run-at": 'document-start',
-        updateURL: "https://github.com/LOLZHelper/LOLZHelperReborn/releases/latest/download/lolzhelper.user.js"
+        updateURL: "https://github.com/LOLZHelper/LOLZHelperReborn/releases/latest/download/lolzhelper.user.js",
+        downloadURL: "https://github.com/LOLZHelper/LOLZHelperReborn/releases/latest/download/lolzhelper.user.js",
       },
     }),
   ],
