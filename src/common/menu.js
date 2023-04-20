@@ -1,5 +1,12 @@
 import initOptions from "./options.js"
 import {GM_setValue, GM_getValue, GM_listValues} from "vite-plugin-monkey/dist/client";
+import {waitForElm} from "./utils.js";
+
+let noneLogo;
+
+waitForElm("#lzt-logo").then((e) => {
+    noneLogo = getComputedStyle(e).backgroundImage.slice(5, -2);
+});
 
 export const Types = {
     CHECKBOX: 0,
@@ -59,7 +66,9 @@ function buildType(type, id, info, value) {
             const div = document.createElement("div");
             div.classList.add("iconSelector");
 
-            for (const [id, logo] of Object.entries(info)) {
+            for (let [id, logo] of Object.entries(info)) {
+                if (id === "NONE")
+                    logo = noneLogo;
                 const input = document.createElement("input");
                 input.classList.add("iconTab");
                 input.type = "radio";
