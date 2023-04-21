@@ -42,6 +42,15 @@ export default async function () {
            contestThreadBlock.parentNode.prepend(contestThreadBlock);
         });
     }, true);
+    await CATEGORIES.common.defineOption("fastparticipate", "Участие по кнопке TAB", async function () {
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Tab") {
+                e.preventDefault();
+                if (document.querySelector(".alreadyParticipate.hidden"))
+                    document.querySelector(".LztContest--Participate:not(.disabled)").click();
+            }
+        });
+    }, true);
     await CATEGORIES.other.defineOption("nokid", "Отключение стуков при банвордах", null, true);
     await CATEGORIES.other.defineOption("nomirror", "Предотвращать переход на зеркало", null, true);
     await CATEGORIES.visual.defineOption("logo", Logos, async function () {
