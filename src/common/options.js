@@ -38,8 +38,8 @@ export default async function () {
     }, true);
     await CATEGORIES.common.defineOption("contestUpper", "Блок розыгрыша над сообщением", async function () {
         waitForElm(".contestThreadBlock").then(() => {
-           const contestThreadBlock = document.getElementsByClassName("contestThreadBlock")[0];
-           contestThreadBlock.parentNode.prepend(contestThreadBlock);
+            const contestThreadBlock = document.getElementsByClassName("contestThreadBlock")[0];
+            contestThreadBlock.parentNode.prepend(contestThreadBlock);
         });
     }, true);
     await CATEGORIES.common.defineOption("fastparticipate", "Участие по кнопке TAB", async function () {
@@ -74,10 +74,10 @@ export default async function () {
             }
         });
     }, "NONE", Types.ICON_SELECTOR);
-    await CATEGORIES.visual.defineOption("font", Fonts, async function() {
+    await CATEGORIES.visual.defineOption("font", Fonts, async function () {
         if (this.value === "NONE") return;
         GM_addStyle(`body {font-family: ${this.value}}`);
-        for (const [name ,rule] of Object.entries(Fonts)) {
+        for (const [name, rule] of Object.entries(Fonts)) {
             GM_addStyle(`@import url('${rule}');`);
         }
     }, "NONE", Types.SELECT);

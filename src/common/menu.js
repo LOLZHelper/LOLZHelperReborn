@@ -1,5 +1,5 @@
 import initOptions from "./options.js"
-import {GM_setValue, GM_getValue, GM_listValues} from "vite-plugin-monkey/dist/client";
+import {GM_getValue, GM_setValue} from "vite-plugin-monkey/dist/client";
 import {waitForElm} from "./utils.js";
 
 let noneLogo;
@@ -21,6 +21,7 @@ class Category {
         this.name = name;
         this.options = [];
     }
+
     async defineOption(id, info, onExecute, def, type) {
         const option = {
             id: id,
@@ -42,7 +43,12 @@ class Category {
             await onExecute?.call(option);
     }
 }
-export const CATEGORIES = {common: new Category("Основные"), visual: new Category("Внешний вид"), other: new Category("Прочее")};
+
+export const CATEGORIES = {
+    common: new Category("Основные"),
+    visual: new Category("Внешний вид"),
+    other: new Category("Прочее")
+};
 
 function buildType(type, id, info, value) {
     switch (type) {
@@ -137,7 +143,7 @@ export function createMenu() {
 
     baseHTML.append(tabs, options, applySettings);
 
-    for (const [id,cat] of Object.entries(CATEGORIES)) {
+    for (const [id, cat] of Object.entries(CATEGORIES)) {
         const tab = document.createElement("input");
         tab.type = "radio"
         tab.name = "category_tab";
@@ -163,7 +169,7 @@ export function createMenu() {
             this.trigger.find(".menuTab").change(function () {
                 options.html("")
                 CATEGORIES[this.id].options.forEach((opt) => {
-                    $(buildType(opt.type, opt.id, opt.info, opt.value)).appendTo(options).find("input, select").change(function() {
+                    $(buildType(opt.type, opt.id, opt.info, opt.value)).appendTo(options).find("input, select").change(function () {
                         switch (opt.type) {
                             case Types.CHECKBOX:
                                 opt.value = this.checked;
@@ -179,8 +185,8 @@ export function createMenu() {
                 });
             });
             this.trigger.find(".menuTab:first").change();
-            this.trigger.find(".applySettings").click(function() {
-                for (const [key,value] of Object.entries(tempValues)) {
+            this.trigger.find(".applySettings").click(function () {
+                for (const [key, value] of Object.entries(tempValues)) {
                     GM_setValue(key, value);
                 }
                 location.reload();
@@ -191,4 +197,5 @@ export function createMenu() {
         }
     }).load();
 }
+
 initOptions();

@@ -19,6 +19,7 @@ export function waitForElm(selector) {
         });
     });
 }
+
 function APIRequest(url) {
     return new Promise(resolve => {
         let token = GM_getValue("token", null);

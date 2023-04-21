@@ -1,7 +1,6 @@
 import "./style/menu.css"
-import { waitForElm } from "./common/utils.js"
-import { createMenu } from "./common/menu.js";
-import {GM_setValue} from "vite-plugin-monkey/dist/client";
+import {waitForElm} from "./common/utils.js"
+import {createMenu} from "./common/menu.js";
 
 waitForElm("#AccountMenu .blockLinksList").then(blockLinksList => {
     const liMenuButton = document.createElement("li");
