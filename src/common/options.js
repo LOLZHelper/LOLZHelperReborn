@@ -65,11 +65,9 @@ export default async function () {
     }, "NONE", Types.ICON_SELECTOR);
     await CATEGORIES.visual.defineOption("font", Fonts, async function() {
         if (this.value === "NONE") return;
+        GM_addStyle(`body {font-family: ${this.value}}`);
         for (const [name ,rule] of Object.entries(Fonts)) {
             GM_addStyle(`@import url('${rule}');`);
-            if (this.value === name) {
-                GM_addStyle(`body {font-family: ${name}}`);
-            }
         }
     }, "NONE", Types.SELECT);
     await CATEGORIES.visual.defineOption("adblock", "Скрытие рекламы", async function () {
