@@ -78,6 +78,7 @@ export default async function () {
         if (this.value === "NONE") return;
         GM_addStyle(`body {font-family: ${this.value}}`);
         for (const [name, rule] of Object.entries(Fonts)) {
+            if (!rule) continue;
             GM_addStyle(`@import url('${rule}');`);
         }
     }, "NONE", Types.SELECT);

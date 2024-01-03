@@ -5,12 +5,7 @@ export default function () {
         const xfAct = XenForo.activate;
         const xfAjax = XenForo.ajax;
         if (CATEGORIES.other.options.nokid.value) {
-            const orig = HTMLAudioElement.prototype.play;
-            HTMLAudioElement.prototype.play = function () {
-                if (!this.src.endsWith('/js/lolzteam/prank.mp3')) {
-                    orig.apply(this, arguments)
-                }
-            };
+            XenForo.PrankProvider.prank = () => {}
         }
         XenForo.activate = function () {
             const ret = xfAct.apply(this, arguments)
